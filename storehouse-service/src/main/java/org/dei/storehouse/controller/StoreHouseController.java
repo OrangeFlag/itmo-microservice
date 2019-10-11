@@ -1,7 +1,7 @@
 package org.dei.storehouse.controller;
 
 import org.dei.storehouse.domain.Product;
-import org.dei.storehouse.domain.ProductTransferObject;
+import org.dei.storehouse.domain.ProductCreationDto;
 import org.dei.storehouse.service.StoreHouseService;
 import org.javamoney.moneta.Money;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class StoreHouseController {
     }
 
     @RequestMapping(path = "/items", method = RequestMethod.POST)
-    public Product createItem(@RequestBody ProductTransferObject productTF) {
+    public Product createItem(@RequestBody ProductCreationDto productTF) {
         return storeHouseService.create(
                 productTF.getName(),
                 productTF.getAmount(),

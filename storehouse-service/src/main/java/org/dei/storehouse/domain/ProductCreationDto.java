@@ -1,14 +1,14 @@
 package org.dei.storehouse.domain;
 
-import org.javamoney.moneta.Money;
-
 import javax.validation.constraints.NotNull;
 
-public class ProductTransferObject {
+public class ProductCreationDto {
     @NotNull
     private String name;
+
     @NotNull
     private Long amount;
+
     @NotNull
     private Long price;
 
