@@ -1,7 +1,10 @@
 package org.dei.order.repository;
 
-import org.dei.order.domain.Order;
-import org.springframework.data.repository.CrudRepository;
+import org.dei.order.model.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface OrderRepository extends CrudRepository<Order, Long> {
+@Repository
+public interface OrderRepository extends JpaRepository<Order, Integer> {
 }
+
