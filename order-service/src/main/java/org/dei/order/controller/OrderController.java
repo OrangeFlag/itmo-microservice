@@ -25,7 +25,7 @@ public class OrderController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public List<Order> orders() {
-        LOGGER.info("start loadAll orders");
+        LOGGER.info("start findAll orders");
         return orderService.findAll();
     }
 
