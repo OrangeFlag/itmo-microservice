@@ -1,11 +1,13 @@
 package org.dei.storehouse.model;
 
+import lombok.Data;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,45 +25,5 @@ public class Product {
     @NotNull
     @ManyToOne
     private StoreHouse storeHouse;
-
-    public StoreHouse getStoreHouse() {
-        return storeHouse;
-    }
-
-    public void setStoreHouse(StoreHouse storeHouse) {
-        this.storeHouse = storeHouse;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public Money getPrice() {
-        return price;
-    }
-
-    public void setPrice(Money price) {
-        this.price = price;
-    }
 }
 

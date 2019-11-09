@@ -1,5 +1,8 @@
 package org.dei.storehouse.dto;
 
+import lombok.Data;
+
+@Data
 public class ProductCreationDTO {
 
     private String name;
@@ -7,29 +10,5 @@ public class ProductCreationDTO {
     private Long amount;
 
     private Long price;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public Long getPrice() {
-        return price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
-    }
 
 }

@@ -1,8 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     java
-    kotlin("jvm") version "1.3.41"
 }
 
 group = "org.dei"
@@ -13,7 +10,6 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")
     implementation("org.springframework.cloud", "spring-cloud-starter-openfeign", "2.1.3.RELEASE")
     implementation("org.javamoney", "moneta", "1.3")
@@ -29,7 +25,4 @@ dependencies {
 
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
-}
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
 }

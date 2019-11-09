@@ -1,4 +1,4 @@
-package org.dei.storehouse.service.impl;
+package org.dei.storehouse.service;
 
 import org.dei.storehouse.model.Product;
 import org.dei.storehouse.repository.ProductRepository;
