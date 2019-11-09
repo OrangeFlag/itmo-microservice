@@ -25,6 +25,10 @@ dependencies {
 
     runtime("org.postgresql", "postgresql", "9.4-1206-jdbc42")
     compile("org.springframework.boot:spring-boot-starter")
+    implementation("org.modelmapper", "modelmapper", "2.3.5")
+
+    compileOnly("org.projectlombok:lombok:1.18.10")
+    annotationProcessor("org.projectlombok:lombok:1.18.10")
 }
 
 configure<JavaPluginConvention> {

@@ -13,7 +13,7 @@ public class ProductConverter {
         product.setPrice(productDTO.getPrice());
         product.setAmount(productDTO.getAmount());
         product.setName(productDTO.getName());
-        product.setStoreHouse(storeHouseConverter.DTOtoStoreHouse(productDTO.getStoreHouse()));
+        product.setStoreHouse(storeHouseConverter.DTOtoStoreHouse(productDTO.getStoreHouseDTO()));
         return product;
     }
 
@@ -24,7 +24,7 @@ public class ProductConverter {
         productDTO.setAmount(product.getAmount());
         productDTO.setName(product.getName());
         productDTO.setPrice(product.getPrice());
-        productDTO.setStoreHouse(storeHouseConverter.StoreHouseToDTO(product.getStoreHouse()));
+        productDTO.setStoreHouseDTO(storeHouseConverter.StoreHouseToDTO(product.getStoreHouse()));
         return productDTO;
     }
 }
