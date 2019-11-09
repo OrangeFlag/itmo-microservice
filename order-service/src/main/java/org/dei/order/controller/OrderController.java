@@ -1,7 +1,7 @@
 package org.dei.order.controller;
 
 import org.dei.order.dto.ItemAdditionParametersDTO;
-import org.dei.order.model.Order;
+import org.dei.order.dto.OrderDTO;
 import org.dei.order.model.Status;
 import org.dei.order.service.OrderService;
 import org.slf4j.Logger;
@@ -24,27 +24,28 @@ public class OrderController {
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public List<Order> orders() {
+    public List<OrderDTO> orders() {
         LOGGER.info("start findAll orders");
         return orderService.findAll();
     }
 
     @RequestMapping(path = "/{order_id}", method = RequestMethod.GET)
-    public Order order(@PathVariable("order_id") int orderId) {
-        LOGGER.info("start search order by id");
+    public OrderDTO order(@PathVariable("order_id") Long orderId) {
+        LOGGER.info("start search order by id " + orderId);
         return orderService.find(orderId);
     }
 
     @RequestMapping(path = "/{order_id}/item", method = RequestMethod.POST)
-    public Order add(@PathVariable("order_id") int orderId,
-                     @RequestBody ItemAdditionParametersDTO itemAdditionParametersDTO) {
-        return null; //TODO, awaits for messaging realisation
+    public OrderDTO add(@PathVariable("order_id") Long orderId,
+                        @RequestBody ItemAdditionParametersDTO itemAdditionParametersDTO) {
+        LOGGER.info("start add product" + itemAdditionParametersDTO + " in order with id " + orderId);
+        return orderService.addItem(itemAdditionParametersDTO, orderId);
     }
 
     @RequestMapping(path = "/{order_id}/status/{status}", method = RequestMethod.PUT)
-    public Order change(@PathVariable("order_id") int orderId, @PathVariable Status status) {
-        LOGGER.info("start setting status for order");
-        return orderService.setStatus(status, orderService.find(orderId));
+    public OrderDTO change(@PathVariable("order_id") Long orderId, @PathVariable Status status) {
+        LOGGER.info("start setting status" + status + "for order " + orderId);
+        return orderService.setStatus(status, orderId);
     }
 
 }

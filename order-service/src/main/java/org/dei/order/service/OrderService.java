@@ -1,17 +1,17 @@
 package org.dei.order.service;
 
 import org.dei.order.dto.ItemAdditionParametersDTO;
-import org.dei.order.model.Order;
+import org.dei.order.dto.OrderDTO;
 import org.dei.order.model.Status;
 
 import java.util.List;
 
 public interface OrderService {
-    Order find(int id);
+    OrderDTO find(Long id);
 
-    List<Order> findAll();
+    List<OrderDTO> findAll();
 
-    Order addItem(ItemAdditionParametersDTO itemAdditionParametersDTO, Order order);
+    OrderDTO addItem(ItemAdditionParametersDTO itemAdditionParametersDTO, Long orderId);
 
-    Order setStatus(Status status, Order order);
+    OrderDTO setStatus(Status status, Long orderId);
 }
