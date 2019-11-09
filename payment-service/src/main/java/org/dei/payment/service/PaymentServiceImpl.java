@@ -1,4 +1,4 @@
-package org.dei.payment.service.impl;
+package org.dei.payment.service;
 
 import org.dei.payment.model.PaymentDetails;
 import org.dei.payment.model.UserDetails;
