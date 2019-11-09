@@ -1,15 +1,15 @@
-package org.dei.storehouse.domain;
+package org.dei.storehouse.model;
 
 import org.javamoney.moneta.Money;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Document(collection = "products")
+@Entity
 public class Product {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     @NotNull
     private String name;
@@ -21,6 +21,7 @@ public class Product {
     private Money price;
 
     @NotNull
+    @ManyToOne
     private StoreHouse storeHouse;
 
     public StoreHouse getStoreHouse() {
@@ -31,17 +32,11 @@ public class Product {
         this.storeHouse = storeHouse;
     }
 
-    public Product(String name, Long amount, Money price) {
-        this.name = name;
-        this.amount = amount;
-        this.price = price;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

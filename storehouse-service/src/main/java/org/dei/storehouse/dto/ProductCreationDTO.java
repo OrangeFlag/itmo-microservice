@@ -1,15 +1,11 @@
-package org.dei.storehouse.domain;
+package org.dei.storehouse.dto;
 
-import javax.validation.constraints.NotNull;
+public class ProductCreationDTO {
 
-public class ProductCreationDto {
-    @NotNull
     private String name;
 
-    @NotNull
     private Long amount;
 
-    @NotNull
     private Long price;
 
     public String getName() {
@@ -35,4 +31,5 @@ public class ProductCreationDto {
     public void setPrice(Long price) {
         this.price = price;
     }
+
 }
