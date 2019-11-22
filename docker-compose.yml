@@ -1,0 +1,50 @@
+version: '3'
+services:
+  eureka-service:
+    build: ./eureka-service
+    ports:
+      - "8761:8761"
+    environment:
+      EUREKA_PORT: 8761
+  order-service:
+    build: ./order-service
+    env_file:
+      - env/order.env
+      - env/order_secret.env
+      - env/common.env
+    depends_on:
+      - order-db
+  order-db:
+    image: postgres:12.1-alpine
+    env_file:
+      - env/order_secret.env
+    volumes:
+      - /var/lib/order-db:/var/lib/postgresql/data
+  payment-service:
+    build: ./payment-service
+    env_file:
+      - env/payment.env
+      - env/payment_secret.env
+      - env/common.env
+    depends_on:
+      - payment-db
+  payment-db:
+    image: postgres:12.1-alpine
+    env_file:
+      - env/payment_secret.env
+    volumes:
+      - /var/lib/payment-db:/var/lib/postgresql/data
+  storehouse-service:
+    build: ./storehouse-service
+    env_file:
+      - env/storehouse.env
+      - env/storehouse_secret.env
+      - env/common.env
+    depends_on:
+      - storehouse-db
+  storehouse-db:
+    image: postgres:12.1-alpine
+    env_file:
+      - env/common.env
+    volumes:
+      - /var/lib/storehouse-db:/var/lib/postgresql/data
