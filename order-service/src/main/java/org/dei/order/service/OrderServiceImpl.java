@@ -1,5 +1,6 @@
 package org.dei.order.service;
 
+import org.dei.order.clients.StoreHouseClient;
 import org.dei.order.dto.ItemAdditionParametersDTO;
 import org.dei.order.dto.OrderDTO;
 import org.dei.order.model.Order;
@@ -12,6 +13,7 @@ import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
@@ -19,17 +21,20 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@EnableFeignClients(basePackages = "org.dei.order.clients.StoreHouseClient")
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper = new ModelMapper();
+    private final StoreHouseClient storeHouseClient;
     private final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, ProductRepository productRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, ProductRepository productRepository, StoreHouseClient storeHouseClient) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
+        this.storeHouseClient = storeHouseClient;
     }
 
     @Override
@@ -63,9 +68,9 @@ public class OrderServiceImpl implements OrderService {
                     newProduct.setAmount(iAPDTO.getAmount()); //TODO send amount to storehouse
                     newProduct.setPrice(product.getPrice());
 
-
                     products.add(newProduct);
 
+                    storeHouseClient.reserveItems(iAPDTO.getId(), iAPDTO.getAmount());
                     orderRepository.save(order);
                 }
             }
@@ -79,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO setStatus(Status status, Long orderId) {
         Order resultOrder = orderRepository.findById(orderId).map((Order order) -> {
             if (status == Status.CANCELLED || status == Status.FAILED){
-                //TODO Send event to storehouse
+                //TODO: add
             }
             order.setStatus(status);
             orderRepository.save(order);

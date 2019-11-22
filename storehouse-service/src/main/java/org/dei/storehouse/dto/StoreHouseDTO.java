@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class StoreHouseDTO {
-    int id;
+    Long id;
 
     String name;
 }

@@ -21,11 +21,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAll() {
-        return (List<Product>) productRepository.findAll();
+        return productRepository.findAll();
     }
 
     @Override
-    public Product get(int id) {
+    public Product get(Long id) {
         return productRepository.findById(id).orElse(null);
     }
 
@@ -40,14 +40,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product add(int id, Long amount) {
+    public Product add(Long id, Long amount) {
         Product product = get(id);
         product.setAmount(product.getAmount() + amount);
         return product;
     }
 
     @Override
-    public Product reserve(int id, Long amount) {
+    public Product reserve(Long id, Long amount) {
         Product product = get(id);
         if (product.getAmount() < amount) {
             amount = product.getAmount();
@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product unreserve(int id, Long amount) {
+    public Product unreserve(Long id, Long amount) {
         return add(id, amount);
     }
 }
