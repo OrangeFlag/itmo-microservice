@@ -33,7 +33,7 @@ public class StoreHouseControllerImpl implements StoreHouseController {
     }
 
     @RequestMapping(path = "/items/{item_id}", method = RequestMethod.GET)
-    public Product getItemById(@PathVariable(value = "item_id") int itemID) {
+    public Product getItemById(@PathVariable(value = "item_id") Long itemID) {
         LOGGER.info("start product order by id");
         return productService.get(itemID);
     }
@@ -49,20 +49,20 @@ public class StoreHouseControllerImpl implements StoreHouseController {
     }
 
     @RequestMapping(path = "/items/{id}/addition/{amount}", method = RequestMethod.PUT)
-    public Product addItems(@PathVariable int id, @PathVariable Long amount) {
+    public Product addItems(@PathVariable Long id, @PathVariable Long amount) {
         LOGGER.info("start adding amount to product");
         return productService.add(id, amount);
     }
 
     @RequestMapping(path = "/items/{id}/reserve/{amount}", method = RequestMethod.POST)
-    public Product reserveItems(@PathVariable int id, @PathVariable Long amount) {
+    public Product reserveItems(@PathVariable Long id, @PathVariable Long amount) {
         LOGGER.info("start reserving amount of product");
         return productService.reserve(id, amount);
     }
 
 
     @RequestMapping(path = "/items/{id}/unreserve/{amount}", method = RequestMethod.POST)
-    public Product unreserveItems(@PathVariable int id, @PathVariable Long amount) {
+    public Product unreserveItems(@PathVariable Long id, @PathVariable Long amount) {
         LOGGER.info("start unreserving amount of product");
         return productService.unreserve(id, amount);
     }

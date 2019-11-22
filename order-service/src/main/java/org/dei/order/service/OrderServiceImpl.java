@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@EnableFeignClients
+@EnableFeignClients(basePackages = "org.dei.order.clients.StoreHouseClient")
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;

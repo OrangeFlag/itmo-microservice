@@ -21,9 +21,9 @@ dependencies {
     implementation("org.springframework.boot", "spring-boot-starter-web", "2.2.0.RELEASE")
     implementation("org.postgresql", "postgresql", "42.2.8")
     implementation("org.springframework.boot", "spring-boot-starter", "2.2.0.RELEASE")
+    implementation("org.springframework.cloud", "spring-cloud-starter-netflix-ribbon", "2.0.0.RELEASE")
     implementation("org.modelmapper", "modelmapper", "2.3.5")
-
-
+    implementation(project(":storehouse-service"))
     compileOnly("org.projectlombok:lombok:1.18.10")
     annotationProcessor("org.projectlombok:lombok:1.18.10")
 }
