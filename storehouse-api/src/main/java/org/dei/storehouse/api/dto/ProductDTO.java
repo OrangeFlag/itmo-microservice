@@ -1,4 +1,4 @@
-package org.dei.storehouse.dto;
+package org.dei.storehouse.api.dto;
 
 import lombok.Data;
 import org.javamoney.moneta.Money;
@@ -6,7 +6,7 @@ import org.javamoney.moneta.Money;
 @Data
 public class ProductDTO {
 
-    private int id;
+    private Long id;
 
     private String name;
 

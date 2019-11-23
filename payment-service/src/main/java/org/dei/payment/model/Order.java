@@ -8,8 +8,8 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Order {
+class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 }

@@ -1,9 +1,9 @@
-package org.dei.payment.dto;
+package org.dei.payment.api.dto;
 
 import lombok.Data;
 
 @Data
 public class OrderDTO {
 
-    private int id;
+    private Long id;
 }

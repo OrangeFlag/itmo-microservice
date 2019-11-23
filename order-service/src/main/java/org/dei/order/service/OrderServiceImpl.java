@@ -1,38 +1,39 @@
 package org.dei.order.service;
 
-import org.dei.order.dto.ItemAdditionParametersDTO;
+import org.dei.order.client.StoreHouseClient;
+import org.dei.order.api.dto.ItemAdditionParametersDTO;
 import org.dei.order.model.Order;
 import org.dei.order.model.Product;
-import org.dei.order.model.Status;
+import org.dei.order.api.model.Status;
 import org.dei.order.repository.OrderRepository;
 import org.dei.order.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@EnableFeignClients(basePackages = "org.dei.order.clients.StoreHouseClient")
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    private final StoreHouseClient storeHouseClient;
     private final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, ProductRepository productRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, ProductRepository productRepository, StoreHouseClient storeHouseClient) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
+        this.storeHouseClient = storeHouseClient;
     }
 
     @Override
     public Order find(Long id) {
-        Order order = orderRepository.findById(id).orElse(null);
-        if (order != null) {
-            return order;
-        }
-        return null;
+        return orderRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -55,9 +56,8 @@ public class OrderServiceImpl implements OrderService {
                     newProduct.setAmount(iAPDTO.getAmount()); //TODO send amount to storehouse
                     newProduct.setPrice(product.getPrice());
 
-
                     products.add(newProduct);
-
+                    storeHouseClient.reserveItems(iAPDTO.getId(), iAPDTO.getAmount());
                     orderRepository.save(order);
                 }
             }

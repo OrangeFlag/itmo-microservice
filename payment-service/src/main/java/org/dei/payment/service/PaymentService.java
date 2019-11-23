@@ -4,5 +4,5 @@ import org.dei.payment.model.PaymentDetails;
 import org.dei.payment.model.UserDetails;
 
 public interface PaymentService {
-    PaymentDetails perform(int orderId, UserDetails userDetails);
+    PaymentDetails perform(Long orderId, UserDetails userDetails);
 }

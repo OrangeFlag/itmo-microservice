@@ -16,10 +16,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentDetails perform(int orderId, UserDetails userDetails) {
+    public PaymentDetails perform(Long orderId, UserDetails userDetails) {
         PaymentDetails order = paymentDetailsRepository.findById(orderId).orElse(null);
-        order.setCardAuthorizationInfo(userDetails.getCardAuthorizationInfo());
-        paymentDetailsRepository.save(order);
+        if (order != null) {
+            order.setCardAuthorizationInfo(userDetails.getCardAuthorizationInfo());
+            paymentDetailsRepository.save(order);
+        }
         return order; //TODO NotImplemented, should change order status
     }
 }

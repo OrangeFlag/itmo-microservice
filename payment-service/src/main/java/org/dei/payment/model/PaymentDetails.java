@@ -2,6 +2,8 @@ package org.dei.payment.model;
 
 
 import lombok.Data;
+import org.dei.payment.api.model.CardAuthorizationInfo;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -10,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class PaymentDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    Long id;
 
     @NotNull
     String username;

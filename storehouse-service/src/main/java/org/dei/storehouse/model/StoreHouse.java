@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class StoreHouse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    Long id;
 
     @NotNull
     String name;

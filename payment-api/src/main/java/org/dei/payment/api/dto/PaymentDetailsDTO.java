@@ -1,20 +1,17 @@
-package org.dei.payment.dto;
+package org.dei.payment.api.dto;
 
 
 import lombok.Data;
-import org.dei.payment.model.CardAuthorizationInfo;
+import org.dei.payment.api.model.CardAuthorizationInfo;
 
 @Data
 public class PaymentDetailsDTO {
 
-    int id;
-
+    Long id;
 
     String username;
 
-
     OrderDTO orderDTO;
-
 
     CardAuthorizationInfo cardAuthorizationInfo;
 }

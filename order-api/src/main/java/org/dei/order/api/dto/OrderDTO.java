@@ -1,14 +1,14 @@
-package org.dei.order.dto;
+package org.dei.order.api.dto;
 
 import lombok.Data;
-import org.dei.order.model.Status;
+import org.dei.order.api.model.Status;
 import org.javamoney.moneta.Money;
 
 import java.util.List;
 
 @Data
 public class OrderDTO {
-    private int id;
+    private Long id;
     private Status status;
     private Money totalCost;
     private Long totalAmount;

@@ -25,6 +25,7 @@ dependencies {
     implementation("org.apache.logging.log4j", "log4j-core", "2.12.1")
     implementation("org.springframework.boot", "spring-boot-starter-data-jpa", "2.2.0.RELEASE")
     implementation("org.springframework.boot", "spring-boot-starter-web", "2.2.0.RELEASE")
+    implementation(project(":storehouse-api"))
 
     runtime("org.postgresql", "postgresql", "9.4-1206-jdbc42")
     compile("org.springframework.boot:spring-boot-starter")
