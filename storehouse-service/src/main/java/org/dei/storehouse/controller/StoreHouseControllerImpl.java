@@ -1,69 +1,71 @@
 package org.dei.storehouse.controller;
 
-import org.dei.storehouse.dto.ProductCreationDTO;
-import org.dei.storehouse.model.Product;
+import org.dei.storehouse.api.dto.ProductCreationDTO;
+import org.dei.storehouse.api.dto.ProductDTO;
 import org.dei.storehouse.service.ProductService;
-import org.dei.storehouse.service.StoreHouseService;
 import org.javamoney.moneta.Money;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/warehouse")
 public class StoreHouseControllerImpl implements StoreHouseController {
-    private final Logger LOGGER = LoggerFactory.getLogger(StoreHouseControllerImpl.class);
-    private final StoreHouseService storeHouseService;
+    private final Logger LOGGER = LoggerFactory.getLogger(StoreHouseController.class);
     private final ProductService productService;
+    private final ModelMapper modelMapper = new ModelMapper();
+    private final Type listProductDTO = new TypeToken<List<ProductDTO>>() {
+    }.getType();
 
     @Autowired
-    public StoreHouseControllerImpl(StoreHouseService storeHouseService, ProductService productService) {
-        this.storeHouseService = storeHouseService;
+    public StoreHouseControllerImpl(ProductService productService) {
         this.productService = productService;
     }
 
-
     @RequestMapping(path = "/items", method = RequestMethod.GET)
-    public List<Product> getItems() {
+    public List<ProductDTO> getItems() {
         LOGGER.info("start findAll products");
-        return productService.getAll();
+        return modelMapper.map(productService.getAll(), listProductDTO);
     }
 
     @RequestMapping(path = "/items/{item_id}", method = RequestMethod.GET)
-    public Product getItemById(@PathVariable(value = "item_id") Long itemID) {
+    public ProductDTO getItemById(@PathVariable(value = "item_id") Long itemID) {
         LOGGER.info("start product order by id");
-        return productService.get(itemID);
+        return modelMapper.map(productService.get(itemID), ProductDTO.class);
     }
 
     @RequestMapping(path = "/items", method = RequestMethod.POST)
-    public Product createItem(@RequestBody ProductCreationDTO productCreationDTO) {
+    public ProductDTO createItem(@RequestBody ProductCreationDTO productCreationDTO) {
         LOGGER.info("start creating new product");
-        return productService.create(
+        return modelMapper.map(productService.create(
                 productCreationDTO.getName(),
                 productCreationDTO.getAmount(),
                 Money.of(productCreationDTO.getPrice(), "RUS")
-        );
+        ), ProductDTO.class);
     }
 
     @RequestMapping(path = "/items/{id}/addition/{amount}", method = RequestMethod.PUT)
-    public Product addItems(@PathVariable Long id, @PathVariable Long amount) {
+    public ProductDTO addItems(@PathVariable Long id, @PathVariable Long amount) {
         LOGGER.info("start adding amount to product");
-        return productService.add(id, amount);
+        return modelMapper.map(productService.add(id, amount), ProductDTO.class);
     }
 
     @RequestMapping(path = "/items/{id}/reserve/{amount}", method = RequestMethod.POST)
-    public Product reserveItems(@PathVariable Long id, @PathVariable Long amount) {
+    public ProductDTO reserveItems(@PathVariable Long id, @PathVariable Long amount) {
         LOGGER.info("start reserving amount of product");
-        return productService.reserve(id, amount);
+        return modelMapper.map(productService.reserve(id, amount), ProductDTO.class);
     }
 
 
     @RequestMapping(path = "/items/{id}/unreserve/{amount}", method = RequestMethod.POST)
-    public Product unreserveItems(@PathVariable Long id, @PathVariable Long amount) {
+    public ProductDTO unreserveItems(@PathVariable Long id, @PathVariable Long amount) {
         LOGGER.info("start unreserving amount of product");
-        return productService.unreserve(id, amount);
+        return modelMapper.map(productService.unreserve(id, amount), ProductDTO.class);
     }
 }

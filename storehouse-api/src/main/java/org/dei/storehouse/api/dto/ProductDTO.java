@@ -1,4 +1,4 @@
-package org.dei.storehouse.dto;
+package org.dei.storehouse.api.dto;
 
 import lombok.Data;
 import org.javamoney.moneta.Money;
@@ -15,5 +15,4 @@ public class ProductDTO {
     private Money price;
 
     private StoreHouseDTO storeHouseDTO;
-
 }

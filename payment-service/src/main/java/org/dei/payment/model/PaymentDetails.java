@@ -1,54 +1,27 @@
 package org.dei.payment.model;
 
 
+import lombok.Data;
+import org.dei.payment.api.model.CardAuthorizationInfo;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
 public class PaymentDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    Long id;
 
     @NotNull
     String username;
 
     @NotNull
     @OneToOne
+    @Enumerated(EnumType.STRING)
     Order order;
 
     @NotNull
     CardAuthorizationInfo cardAuthorizationInfo;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public CardAuthorizationInfo getCardAuthorizationInfo() {
-        return cardAuthorizationInfo;
-    }
-
-    public void setCardAuthorizationInfo(CardAuthorizationInfo cardAuthorizationInfo) {
-        this.cardAuthorizationInfo = cardAuthorizationInfo;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

@@ -1,28 +1,33 @@
 package org.dei.storehouse.api;
 
 
+import org.dei.storehouse.api.dto.ProductCreationDTO;
+import org.dei.storehouse.api.dto.ProductDTO;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 public interface StorehouseAPI {
     @RequestMapping(path = "/items", method = RequestMethod.GET)
-    List<Product> getItems();
+    public List<ProductDTO> getItems();
 
     @RequestMapping(path = "/items/{item_id}", method = RequestMethod.GET)
-    Product getItemById(@PathVariable(value = "item_id") Long itemID);
+    public ProductDTO getItemById(@PathVariable(value = "item_id") Long itemID);
 
     @RequestMapping(path = "/items", method = RequestMethod.POST)
-    Product createItem(@RequestBody ProductCreationDTO productCreationDTO);
+    public ProductDTO createItem(@RequestBody ProductCreationDTO productCreationDTO);
 
     @RequestMapping(path = "/items/{id}/addition/{amount}", method = RequestMethod.PUT)
-    Product addItems(@PathVariable Long id, @PathVariable Long amount);
+    public ProductDTO addItems(@PathVariable Long id, @PathVariable Long amount);
 
     @RequestMapping(path = "/items/{id}/reserve/{amount}", method = RequestMethod.POST)
-    Product reserveItems(@PathVariable Long id, @PathVariable Long amount);
+    public ProductDTO reserveItems(@PathVariable Long id, @PathVariable Long amount);
+
 
     @RequestMapping(path = "/items/{id}/unreserve/{amount}", method = RequestMethod.POST)
-    Product unreserveItems(@PathVariable Long id, @PathVariable Long amount);
+    public ProductDTO unreserveItems(@PathVariable Long id, @PathVariable Long amount);
 
 }

@@ -1,4 +1,4 @@
-package org.dei.storehouse.dto;
+package org.dei.storehouse.api.dto;
 
 import lombok.Data;
 

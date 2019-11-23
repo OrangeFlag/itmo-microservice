@@ -5,7 +5,7 @@ import org.javamoney.moneta.Money;
 
 @Data
 public class ProductDTO {
-    private int id;
+    private Long id;
     private String name;
     private Long amount;
     private Money price;

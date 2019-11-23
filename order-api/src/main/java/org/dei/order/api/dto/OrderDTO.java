@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class OrderDTO {
-    private int id;
+    private Long id;
     private Status status;
     private Money totalCost;
     private Long totalAmount;

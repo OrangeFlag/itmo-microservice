@@ -1,9 +1,8 @@
-package org.dei.payment.service.impl;
+package org.dei.payment.service;
 
 import org.dei.payment.model.PaymentDetails;
 import org.dei.payment.model.UserDetails;
 import org.dei.payment.repository.PaymentDetailsRepository;
-import org.dei.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +16,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentDetails perform(int orderId, UserDetails userDetails) {
+    public PaymentDetails perform(Long orderId, UserDetails userDetails) {
         PaymentDetails order = paymentDetailsRepository.findById(orderId).orElse(null);
-        order.setCardAuthorizationInfo(userDetails.getCardAuthorizationInfo());
-        paymentDetailsRepository.save(order);
+        if (order != null) {
+            order.setCardAuthorizationInfo(userDetails.getCardAuthorizationInfo());
+            paymentDetailsRepository.save(order);
+        }
         return order; //TODO NotImplemented, should change order status
     }
 }

@@ -1,26 +1,11 @@
 package org.dei.payment.api.dto;
 
-import org.dei.payment.model.CardAuthorizationInfo;
+import lombok.Data;
+import org.dei.payment.api.model.CardAuthorizationInfo;
 
-
+@Data
 public class UserDetailsDTO {
-    String username; // Is it id?
+    String username;
 
     CardAuthorizationInfo cardAuthorizationInfo;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public CardAuthorizationInfo getCardAuthorizationInfo() {
-        return cardAuthorizationInfo;
-    }
-
-    public void setCardAuthorizationInfo(CardAuthorizationInfo cardAuthorizationInfo) {
-        this.cardAuthorizationInfo = cardAuthorizationInfo;
-    }
 }
