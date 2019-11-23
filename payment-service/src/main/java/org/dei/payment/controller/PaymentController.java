@@ -1,10 +1,10 @@
 package org.dei.payment.controller;
 
-import org.dei.payment.converter.OrderConverter;
-import org.dei.payment.converter.UserDetailsConvert;
 import org.dei.payment.dto.OrderDTO;
 import org.dei.payment.dto.UserDetailsDTO;
+import org.dei.payment.model.UserDetails;
 import org.dei.payment.service.PaymentService;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +15,18 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
     private final Logger LOGGER = LoggerFactory.getLogger(PaymentController.class);
     private final PaymentService paymentService;
-    private final OrderConverter orderConverter;
-    private final UserDetailsConvert userDetailsConvert;
+    private final ModelMapper modelMapper = new ModelMapper();
+
     @Autowired
-    public PaymentController(PaymentService paymentService, OrderConverter orderConverter, UserDetailsConvert userDetailsConvert) {
+    public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;
-        this.orderConverter = orderConverter;
-        this.userDetailsConvert = userDetailsConvert;
     }
 
-    @RequestMapping(path = "/{order_id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{order_id}/payment", method = RequestMethod.PUT)
     public OrderDTO perform(@PathVariable("order_id") int orderId, @RequestBody UserDetailsDTO userDetailsDTO) {
-        LOGGER.info("start performing payement");
-        return orderConverter.orderToDTO(paymentService.perform(orderId, userDetailsConvert.DTOtoUserDetails(userDetailsDTO)).getOrder());
+        LOGGER.info("start performing payment");
+        UserDetails userDetails = modelMapper.map(userDetailsDTO, UserDetails.class);
+        return modelMapper.map(paymentService.perform(orderId, userDetails), OrderDTO.class);
     }
 
 }

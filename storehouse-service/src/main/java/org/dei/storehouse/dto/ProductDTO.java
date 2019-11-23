@@ -15,5 +15,4 @@ public class ProductDTO {
     private Money price;
 
     private StoreHouseDTO storeHouseDTO;
-
 }

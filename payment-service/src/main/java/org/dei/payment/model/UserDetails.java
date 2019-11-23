@@ -1,10 +1,12 @@
 package org.dei.payment.model;
 
+import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
 public class UserDetails {
     @Id
     @NotNull
@@ -12,20 +14,4 @@ public class UserDetails {
 
     @NotNull
     CardAuthorizationInfo cardAuthorizationInfo;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public CardAuthorizationInfo getCardAuthorizationInfo() {
-        return cardAuthorizationInfo;
-    }
-
-    public void setCardAuthorizationInfo(CardAuthorizationInfo cardAuthorizationInfo) {
-        this.cardAuthorizationInfo = cardAuthorizationInfo;
-    }
 }
