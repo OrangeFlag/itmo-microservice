@@ -1,8 +1,8 @@
 package org.dei.order.controller;
 
-import org.dei.order.dto.ItemAdditionParametersDTO;
-import org.dei.order.dto.OrderDTO;
-import org.dei.order.model.Status;
+import org.dei.order.api.dto.ItemAdditionParametersDTO;
+import org.dei.order.api.dto.OrderDTO;
+import org.dei.order.api.model.Status;
 import org.dei.order.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,6 @@ public class OrderControllerImpl implements OrderController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(OrderControllerImpl.class);
     private final OrderService orderService;
-
 
     @Autowired
     public OrderControllerImpl(OrderService orderService) {

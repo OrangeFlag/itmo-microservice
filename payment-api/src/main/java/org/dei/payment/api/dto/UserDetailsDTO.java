@@ -1,28 +1,12 @@
-package org.dei.payment.dto;
-
+package org.dei.payment.api.dto;
 
 import org.dei.payment.model.CardAuthorizationInfo;
 
-public class PaymentDetailsDTO {
 
-    int id;
-
-
-    String username;
-
-
-    OrderDTO orderDTO;
-
+public class UserDetailsDTO {
+    String username; // Is it id?
 
     CardAuthorizationInfo cardAuthorizationInfo;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -38,13 +22,5 @@ public class PaymentDetailsDTO {
 
     public void setCardAuthorizationInfo(CardAuthorizationInfo cardAuthorizationInfo) {
         this.cardAuthorizationInfo = cardAuthorizationInfo;
-    }
-
-    public OrderDTO getOrder() {
-        return orderDTO;
-    }
-
-    public void setOrder(OrderDTO orderDTO) {
-        this.orderDTO = orderDTO;
     }
 }

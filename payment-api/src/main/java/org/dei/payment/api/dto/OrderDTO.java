@@ -1,4 +1,4 @@
-package org.dei.payment.dto;
+package org.dei.payment.api.dto;
 
 public class OrderDTO {
 

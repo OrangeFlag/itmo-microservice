@@ -1,6 +1,6 @@
 package org.dei.payment.converter;
 
-import org.dei.payment.dto.OrderDTO;
+import org.dei.payment.api.dto.OrderDTO;
 import org.dei.payment.model.Order;
 import org.springframework.stereotype.Component;
 

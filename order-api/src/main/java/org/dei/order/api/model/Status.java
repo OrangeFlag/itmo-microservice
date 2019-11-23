@@ -1,4 +1,4 @@
-package org.dei.order.model;
+package org.dei.order.api.model;
 
 public enum Status {
     COLLECTING,

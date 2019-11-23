@@ -1,7 +1,7 @@
-package org.dei.order.dto;
+package org.dei.order.api.dto;
 
 import lombok.Data;
-import org.dei.order.model.Status;
+import org.dei.order.api.model.Status;
 import org.javamoney.moneta.Money;
 
 import java.util.List;

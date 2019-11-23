@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-
     implementation("org.springframework.cloud", "spring-cloud-starter-openfeign", "2.1.3.RELEASE")
     implementation("org.springframework.cloud", "spring-cloud-starter-netflix-eureka-client", "2.1.3.RELEASE")
     implementation("org.springframework.boot", "spring-boot-starter-actuator", "2.1.3.RELEASE")
@@ -29,8 +28,7 @@ dependencies {
     implementation("org.modelmapper", "modelmapper", "2.3.5")
     implementation("javax.xml.bind", "jaxb-api", "2.3.1")
     implementation("com.google.code.gson", "gson", "2.8.6")
-    implementation(project(":storehouse-service"))
-
+    implementation(project(":order-api"))
     compileOnly("org.projectlombok:lombok:1.18.10")
     annotationProcessor("org.projectlombok:lombok:1.18.10")
 }

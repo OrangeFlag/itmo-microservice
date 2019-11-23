@@ -1,6 +1,7 @@
 package org.dei.order.model;
 
 import lombok.Data;
+import org.dei.order.api.model.Status;
 import org.javamoney.moneta.Money;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

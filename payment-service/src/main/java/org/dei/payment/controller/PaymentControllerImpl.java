@@ -2,8 +2,8 @@ package org.dei.payment.controller;
 
 import org.dei.payment.converter.OrderConverter;
 import org.dei.payment.converter.UserDetailsConvert;
-import org.dei.payment.dto.OrderDTO;
-import org.dei.payment.dto.UserDetailsDTO;
+import org.dei.payment.api.dto.OrderDTO;
+import org.dei.payment.api.dto.UserDetailsDTO;
 import org.dei.payment.service.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package org.dei.order.dto;
+package org.dei.order.api.dto;
 
 import lombok.Data;
 import org.javamoney.moneta.Money;

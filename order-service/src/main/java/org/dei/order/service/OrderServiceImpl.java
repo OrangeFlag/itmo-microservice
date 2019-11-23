@@ -1,11 +1,11 @@
 package org.dei.order.service;
 
-import org.dei.order.clients.StoreHouseClient;
-import org.dei.order.dto.ItemAdditionParametersDTO;
-import org.dei.order.dto.OrderDTO;
+import org.dei.order.client.StoreHouseClient;
+import org.dei.order.api.dto.ItemAdditionParametersDTO;
+import org.dei.order.api.dto.OrderDTO;
 import org.dei.order.model.Order;
 import org.dei.order.model.Product;
-import org.dei.order.model.Status;
+import org.dei.order.api.model.Status;
 import org.dei.order.repository.OrderRepository;
 import org.dei.order.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
