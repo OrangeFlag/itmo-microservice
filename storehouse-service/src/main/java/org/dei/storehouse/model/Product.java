@@ -1,10 +1,9 @@
 package org.dei.storehouse.model;
 
-import lombok.Data;
 import org.javamoney.moneta.Money;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import lombok.Data;
 
 @Entity
 @Data

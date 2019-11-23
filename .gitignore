@@ -1,3 +1,4 @@
 .idea
 .gradle
 build
+env/*_secret.env

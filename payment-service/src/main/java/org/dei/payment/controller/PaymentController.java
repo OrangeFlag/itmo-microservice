@@ -2,7 +2,6 @@ package org.dei.payment.controller;
 
 import org.dei.payment.dto.OrderDTO;
 import org.dei.payment.dto.UserDetailsDTO;
-import org.dei.payment.model.Order;
 import org.dei.payment.model.UserDetails;
 import org.dei.payment.service.PaymentService;
 import org.modelmapper.ModelMapper;

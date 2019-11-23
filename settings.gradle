@@ -2,3 +2,5 @@ rootProject.name = 'cloud-shop'
 include 'payment-service'
 include 'order-service'
 include 'storehouse-service'
+include 'eureka-service'
+

@@ -1,7 +1,6 @@
 package org.dei.order.service;
 
 import org.dei.order.dto.ItemAdditionParametersDTO;
-import org.dei.order.dto.OrderDTO;
 import org.dei.order.model.Order;
 import org.dei.order.model.Status;
 

@@ -3,7 +3,6 @@ package org.dei.payment.service;
 import org.dei.payment.model.PaymentDetails;
 import org.dei.payment.model.UserDetails;
 import org.dei.payment.repository.PaymentDetailsRepository;
-import org.dei.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

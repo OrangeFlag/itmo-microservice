@@ -6,6 +6,8 @@ import org.dei.order.model.Status;
 import org.dei.order.service.OrderService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,11 @@ public class OrderController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
     private final OrderService orderService;
+
     private final ModelMapper modelMapper = new ModelMapper();
     private final Type listOrderDTO = new TypeToken<List<OrderDTO>>() {
     }.getType();
+
 
     @Autowired
     public OrderController(OrderService orderService) {
@@ -38,6 +42,7 @@ public class OrderController {
     @RequestMapping(path = "/{order_id}", method = RequestMethod.GET)
     public OrderDTO order(@PathVariable("order_id") Long orderId) {
         LOGGER.info("start search order by id " + orderId);
+
         return modelMapper.map(orderService.find(orderId), OrderDTO.class);
     }
 

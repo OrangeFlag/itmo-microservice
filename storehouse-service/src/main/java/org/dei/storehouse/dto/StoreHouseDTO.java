@@ -7,5 +7,4 @@ public class StoreHouseDTO {
     int id;
 
     String name;
-
 }
