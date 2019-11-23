@@ -15,19 +15,17 @@ public interface StorehouseAPI {
     public List<ProductDTO> getItems();
 
     @RequestMapping(path = "/items/{item_id}", method = RequestMethod.GET)
-    public ProductDTO getItemById(@PathVariable(value = "item_id") Long itemID);
+    public ProductDTO getItemById(@PathVariable("item_id") Long itemID);
 
     @RequestMapping(path = "/items", method = RequestMethod.POST)
     public ProductDTO createItem(@RequestBody ProductCreationDTO productCreationDTO);
 
     @RequestMapping(path = "/items/{id}/addition/{amount}", method = RequestMethod.PUT)
-    public ProductDTO addItems(@PathVariable Long id, @PathVariable Long amount);
+    public ProductDTO addItems(@PathVariable("id") Long id, @PathVariable("amount") Long amount);
 
     @RequestMapping(path = "/items/{id}/reserve/{amount}", method = RequestMethod.POST)
-    public ProductDTO reserveItems(@PathVariable Long id, @PathVariable Long amount);
-
+    public ProductDTO reserveItems(@PathVariable("id") Long id, @PathVariable("amount") Long amount);
 
     @RequestMapping(path = "/items/{id}/unreserve/{amount}", method = RequestMethod.POST)
-    public ProductDTO unreserveItems(@PathVariable Long id, @PathVariable Long amount);
-
+    public ProductDTO unreserveItems(@PathVariable("id") Long id, @PathVariable("amount") Long amount);
 }
