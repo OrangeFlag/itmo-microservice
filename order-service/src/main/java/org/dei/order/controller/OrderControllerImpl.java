@@ -1,5 +1,6 @@
 package org.dei.order.controller;
 
+import org.dei.order.api.OrderAPI;
 import org.dei.order.api.dto.ItemAdditionParametersDTO;
 import org.dei.order.api.dto.OrderDTO;
 import org.dei.order.api.model.Status;
@@ -16,9 +17,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-public class OrderControllerImpl {
+public class OrderControllerImpl implements OrderAPI {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(OrderControllerImpl.class);
     private final OrderService orderService;
 
     private final ModelMapper modelMapper = new ModelMapper();

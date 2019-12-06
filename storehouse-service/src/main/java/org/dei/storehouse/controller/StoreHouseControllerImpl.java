@@ -1,5 +1,6 @@
 package org.dei.storehouse.controller;
 
+import org.dei.storehouse.api.StorehouseAPI;
 import org.dei.storehouse.api.dto.ProductCreationDTO;
 import org.dei.storehouse.api.dto.ProductDTO;
 import org.dei.storehouse.service.ProductService;
@@ -16,8 +17,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/warehouse")
-public class StoreHouseControllerImpl implements StoreHouseController {
-    private final Logger LOGGER = LoggerFactory.getLogger(StoreHouseController.class);
+public class StoreHouseControllerImpl implements StorehouseAPI {
+    private final Logger LOGGER = LoggerFactory.getLogger(StoreHouseControllerImpl.class);
     private final ProductService productService;
     private final ModelMapper modelMapper = new ModelMapper();
     private final Type listProductDTO = new TypeToken<List<ProductDTO>>() {

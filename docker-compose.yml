@@ -1,9 +1,15 @@
 version: '3'
 services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "2020:2020"
+    env_file:
+      - env/common.env
+    environment:
+      GATEWAY_PORT: 2020
   eureka-service:
     build: ./eureka-service
-    ports:
-      - "8761:8761"
     environment:
       EUREKA_PORT: 8761
   order-service:

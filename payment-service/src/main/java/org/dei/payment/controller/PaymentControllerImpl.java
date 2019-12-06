@@ -1,5 +1,6 @@
 package org.dei.payment.controller;
 
+import org.dei.payment.api.PaymentAPI;
 import org.dei.payment.api.dto.OrderDTO;
 import org.dei.payment.api.dto.UserDetailsDTO;
 import org.dei.payment.model.UserDetails;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/payment")
-public class PaymentControllerImpl implements PaymentController {
-    private final Logger LOGGER = LoggerFactory.getLogger(PaymentController.class);
+public class PaymentControllerImpl implements PaymentAPI {
+    private final Logger LOGGER = LoggerFactory.getLogger(PaymentControllerImpl.class);
     private final PaymentService paymentService;
     private final ModelMapper modelMapper = new ModelMapper();
 

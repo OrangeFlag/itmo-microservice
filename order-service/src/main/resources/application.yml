@@ -1,8 +1,6 @@
 spring:
   application:
     name: order-service
-  server:
-    port: 0
   datasource:
     platform: postgres
     url: jdbc:postgresql://${POSTGRES_HOSTNAME}:5432/${POSTGRES_DB}
@@ -20,6 +18,9 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+server:
+  port: 0
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1

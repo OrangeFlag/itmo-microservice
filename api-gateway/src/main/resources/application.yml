@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: ${GATEWAY_PORT}
+zuul:
+  routes:
+    eureka:
+      path: "/eureka/**"
+      url: "http://eureka-service:8761"
+    storehouse-service:
+      path: "/api/warehouse/**"
+      serviceId: "storehouse-service"
+      stripPrefix: false
+    order-service:
+      path: "/api/orders/**"
+      serviceId: "order-service"
+      stripPrefix: false
+    payment-service:
+      path: "/api/payment/**"
+      serviceId: "payment-service"
+      stripPrefix: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream, info, health
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URL}
+  server:
+    waitTimeInMsWhenSyncEmpty: 0

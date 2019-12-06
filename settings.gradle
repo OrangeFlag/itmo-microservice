@@ -6,3 +6,5 @@ include 'eureka-service'
 include 'order-api'
 include 'payment-api'
 include 'storehouse-api'
+include 'api-gateway'
+
