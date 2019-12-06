@@ -1,6 +1,7 @@
 version: '3'
 services:
   api-gateway:
+    image: itmo-microservice_api-gateway
     build: ./api-gateway
     ports:
       - "2020:2020"
@@ -9,11 +10,16 @@ services:
     environment:
       GATEWAY_PORT: 2020
   eureka-service:
+    image: itmo-microservice_eureka-service
     build: ./eureka-service
     environment:
       EUREKA_PORT: 8761
   order-service:
+    image: itmo-microservice_order-service
     build: ./order-service
+    deploy:
+      mode: replicated
+      replicas: 3
     env_file:
       - env/order.env
       - env/order_secret.env
@@ -27,7 +33,11 @@ services:
     volumes:
       - /var/lib/order-db:/var/lib/postgresql/data
   payment-service:
+    image: itmo-microservice_payment-service
     build: ./payment-service
+    deploy:
+      mode: replicated
+      replicas: 3
     env_file:
       - env/payment.env
       - env/payment_secret.env
@@ -41,7 +51,11 @@ services:
     volumes:
       - /var/lib/payment-db:/var/lib/postgresql/data
   storehouse-service:
+    image: itmo-microservice_storehouse-service
     build: ./storehouse-service
+    deploy:
+      mode: replicated
+      replicas: 3
     env_file:
       - env/storehouse.env
       - env/storehouse_secret.env
