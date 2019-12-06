@@ -51,6 +51,6 @@ services:
   storehouse-db:
     image: postgres:12.1-alpine
     env_file:
-      - env/common.env
+      - env/storehouse_secret.env
     volumes:
       - /var/lib/storehouse-db:/var/lib/postgresql/data
