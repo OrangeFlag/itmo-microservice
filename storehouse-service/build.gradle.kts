@@ -26,11 +26,12 @@ dependencies {
     implementation("org.springframework.boot", "spring-boot-starter-data-jpa", "2.2.0.RELEASE")
     implementation("org.springframework.boot", "spring-boot-starter-web", "2.2.0.RELEASE")
     implementation(project(":storehouse-api"))
-
+    implementation("org.springframework.amqp", "spring-rabbit", "2.2.0.RELEASE")
+    implementation("org.springframework.boot", "spring-boot-starter-amqp", "2.2.0.RELEASE")
     runtime("org.postgresql", "postgresql", "9.4-1206-jdbc42")
     compile("org.springframework.boot:spring-boot-starter")
     implementation("org.modelmapper", "modelmapper", "2.3.5")
-
+    implementation(project(":messages"))
     compileOnly("org.projectlombok:lombok:1.18.10")
     annotationProcessor("org.projectlombok:lombok:1.18.10")
     implementation("javax.xml.bind", "jaxb-api", "2.3.1")

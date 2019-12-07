@@ -7,4 +7,5 @@ include 'order-api'
 include 'payment-api'
 include 'storehouse-api'
 include 'api-gateway'
+include 'messages'
 

@@ -28,8 +28,11 @@ dependencies {
     implementation("org.modelmapper", "modelmapper", "2.3.5")
     implementation("javax.xml.bind", "jaxb-api", "2.3.1")
     implementation("com.google.code.gson", "gson", "2.8.6")
+    implementation("org.springframework.amqp", "spring-rabbit", "2.2.0.RELEASE")
+    implementation("org.springframework.boot", "spring-boot-starter-amqp", "2.2.0.RELEASE")
     implementation(project(":order-api"))
     implementation(project(":storehouse-api"))
+    implementation(project(":messages"))
     compileOnly("org.projectlombok:lombok:1.18.10")
     annotationProcessor("org.projectlombok:lombok:1.18.10")
 }

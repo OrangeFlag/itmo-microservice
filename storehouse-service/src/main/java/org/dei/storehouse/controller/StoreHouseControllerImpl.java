@@ -47,7 +47,7 @@ public class StoreHouseControllerImpl implements StorehouseAPI {
         return modelMapper.map(productService.create(
                 productCreationDTO.getName(),
                 productCreationDTO.getAmount(),
-                Money.of(productCreationDTO.getPrice(), "RUS")
+                Money.of(productCreationDTO.getPrice(), "EUR")
         ), ProductDTO.class);
     }
 

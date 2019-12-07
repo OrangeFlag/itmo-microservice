@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class OrderControllerImpl implements OrderAPI {
 
 
     @Autowired
-    public OrderControllerImpl(OrderService orderService) {
+    public OrderControllerImpl(OrderService orderService, AmqpTemplate messageTemplate) {
         this.orderService = orderService;
     }
 
@@ -57,5 +58,6 @@ public class OrderControllerImpl implements OrderAPI {
         LOGGER.info("start setting status" + status + "for order " + orderId);
         return modelMapper.map(orderService.setStatus(status, orderId), OrderDTO.class);
     }
+
 
 }

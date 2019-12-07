@@ -54,3 +54,8 @@ services:
       - env/storehouse_secret.env
     volumes:
       - /var/lib/storehouse-db:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
