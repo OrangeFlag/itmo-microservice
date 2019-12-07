@@ -4,7 +4,6 @@ import org.dei.storehouse.api.StorehouseAPI;
 import org.dei.storehouse.api.dto.ProductCreationDTO;
 import org.dei.storehouse.api.dto.ProductDTO;
 import org.dei.storehouse.service.ProductService;
-import org.javamoney.moneta.Money;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
@@ -38,6 +37,7 @@ public class StoreHouseControllerImpl implements StorehouseAPI {
     @RequestMapping(path = "/items/{item_id}", method = RequestMethod.GET)
     public ProductDTO getItemById(@PathVariable(value = "item_id") Long itemID) {
         LOGGER.info("start product order by id");
+        LOGGER.debug("itemId: " + itemID);
         return modelMapper.map(productService.get(itemID), ProductDTO.class);
     }
 
@@ -47,7 +47,7 @@ public class StoreHouseControllerImpl implements StorehouseAPI {
         return modelMapper.map(productService.create(
                 productCreationDTO.getName(),
                 productCreationDTO.getAmount(),
-                Money.of(productCreationDTO.getPrice(), "EUR")
+                productCreationDTO.getPrice()
         ), ProductDTO.class);
     }
 

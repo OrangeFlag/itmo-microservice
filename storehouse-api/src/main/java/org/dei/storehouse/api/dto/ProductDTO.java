@@ -1,7 +1,6 @@
 package org.dei.storehouse.api.dto;
 
 import lombok.Data;
-import org.javamoney.moneta.Money;
 
 @Data
 public class ProductDTO {
@@ -12,7 +11,7 @@ public class ProductDTO {
 
     private Long amount;
 
-    private Money price;
+    private Long price;
 
     private StoreHouseDTO storeHouseDTO;
 }

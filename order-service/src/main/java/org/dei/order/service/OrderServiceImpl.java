@@ -6,7 +6,6 @@ import org.dei.order.client.StoreHouseClient;
 import org.dei.order.model.Order;
 import org.dei.order.model.Product;
 import org.dei.order.repository.OrderRepository;
-import org.dei.order.repository.ProductRepository;
 import org.dei.storehouse.api.dto.ProductDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,15 +21,13 @@ import java.util.Objects;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
-    private final ProductRepository productRepository;
     private final StoreHouseClient storeHouseClient;
     private final MessageSender messageSender;
     private final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, ProductRepository productRepository, StoreHouseClient storeHouseClient, MessageSender messageSender) {
+    public OrderServiceImpl(OrderRepository orderRepository, StoreHouseClient storeHouseClient, MessageSender messageSender) {
         this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
         this.storeHouseClient = storeHouseClient;
         this.messageSender = messageSender;
     }
@@ -80,7 +77,7 @@ public class OrderServiceImpl implements OrderService {
             newProduct.setAmount(iAPDTO.getAmount());
             newProduct.setPrice(product.getPrice());
             products.add(newProduct);
-            order.setTotalCost(order.getTotalCost().add(product.getPrice().multiply(product.getAmount())));
+            order.setTotalCost(order.getTotalCost() + product.getPrice() + product.getAmount());
             order.setTotalAmount(order.getTotalAmount() + product.getAmount());
             storeHouseClient.reserveItems(iAPDTO.getId(), iAPDTO.getAmount());
         }

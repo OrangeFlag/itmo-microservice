@@ -14,7 +14,6 @@ subprojects {
 
     dependencies {
         "implementation"("org.springframework.cloud", "spring-cloud-starter-openfeign", "2.1.3.RELEASE")
-        "implementation"("org.javamoney", "moneta", "1.3")
         "implementation"("javax.validation", "validation-api", "2.0.1.Final")
         "implementation"("org.apache.logging.log4j", "log4j-api", "2.12.1")
         "implementation"("org.apache.logging.log4j", "log4j-core", "2.12.1")

@@ -1,7 +1,6 @@
 package org.dei.storehouse.service;
 
 import org.dei.storehouse.model.Product;
-import org.javamoney.moneta.Money;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ public interface ProductService {
 
     Product get(Long id);
 
-    Product create(String name, Long amount, Money price);
+    Product create(String name, Long amount, Long price);
 
     Product add(Long id, Long amount);
 

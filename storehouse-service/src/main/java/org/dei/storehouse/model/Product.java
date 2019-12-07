@@ -1,7 +1,6 @@
 package org.dei.storehouse.model;
 
 import lombok.Data;
-import org.javamoney.moneta.Money;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ public class Product {
     private Long amount;
 
     @NotNull
-    private Money price;
+    private Long price;
 
 //    @NotNull
 //    @ManyToOne
