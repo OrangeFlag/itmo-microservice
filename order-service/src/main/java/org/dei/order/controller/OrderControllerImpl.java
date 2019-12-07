@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +28,7 @@ public class OrderControllerImpl implements OrderAPI {
 
 
     @Autowired
-    public OrderControllerImpl(OrderService orderService, AmqpTemplate messageTemplate) {
+    public OrderControllerImpl(OrderService orderService) {
         this.orderService = orderService;
     }
 
