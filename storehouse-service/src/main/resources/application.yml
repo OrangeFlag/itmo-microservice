@@ -13,7 +13,7 @@ spring:
     database: postgresql
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   rabbitmq:
     port: 5672
     username: guest
