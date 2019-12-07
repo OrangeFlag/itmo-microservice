@@ -19,7 +19,7 @@ services:
     build: ./order-service
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
     env_file:
       - env/order.env
       - env/order_secret.env
@@ -37,7 +37,7 @@ services:
     build: ./payment-service
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
     env_file:
       - env/payment.env
       - env/payment_secret.env
@@ -55,7 +55,7 @@ services:
     build: ./storehouse-service
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
     env_file:
       - env/storehouse.env
       - env/storehouse_secret.env
