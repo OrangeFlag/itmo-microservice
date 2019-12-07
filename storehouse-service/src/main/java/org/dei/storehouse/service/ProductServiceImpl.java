@@ -2,8 +2,6 @@ package org.dei.storehouse.service;
 
 import org.dei.storehouse.model.Product;
 import org.dei.storehouse.repository.ProductRepository;
-import org.dei.storehouse.service.ProductService;
-import org.javamoney.moneta.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product create(String name, Long amount, Money price) {
+    public Product create(String name, Long amount, Long price) {
         Product product = new Product();
         product.setName(name);
         product.setAmount(amount);

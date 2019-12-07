@@ -2,9 +2,9 @@ package org.dei.order.model;
 
 import lombok.Data;
 import org.dei.order.api.model.Status;
-import org.javamoney.moneta.Money;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,7 +20,7 @@ public class Order {
     private Status status;
 
     @NotNull
-    private Money totalCost;
+    private Long totalCost;
 
     @NotNull
     private Long totalAmount;
@@ -30,4 +30,5 @@ public class Order {
 
     @OneToMany
     private List<Product> products;
+
 }

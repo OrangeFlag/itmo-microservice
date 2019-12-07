@@ -11,7 +11,6 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot", "spring-boot-starter-web", "2.2.0.RELEASE")
-    implementation("org.javamoney", "moneta", "1.3")
     compileOnly("org.projectlombok:lombok:1.18.10")
     annotationProcessor("org.projectlombok:lombok:1.18.10")
     testCompile("junit", "junit", "4.12")
