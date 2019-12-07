@@ -16,6 +16,16 @@ spring:
       ddl-auto: update
 server:
   port: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream, info, health
+feign:
+  hystrix:
+    enabled: true
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1
