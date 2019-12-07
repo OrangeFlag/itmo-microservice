@@ -1,5 +1,7 @@
 package org.dei.order.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.dei.order.api.OrderAPI;
 import org.dei.order.api.dto.ItemAdditionParametersDTO;
 import org.dei.order.api.dto.OrderDTO;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
+@Api(value = "Order")
 public class OrderControllerImpl implements OrderAPI {
 
     private final Logger LOGGER = LoggerFactory.getLogger(OrderControllerImpl.class);
@@ -33,6 +36,7 @@ public class OrderControllerImpl implements OrderAPI {
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
+    @ApiOperation(value = "Get orders")
     public List<OrderDTO> orders() {
         LOGGER.info("start findAll orders");
         return modelMapper.map(orderService.findAll(), listOrderDTO);

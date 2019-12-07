@@ -28,6 +28,8 @@ dependencies {
     implementation("org.modelmapper", "modelmapper", "2.3.5")
     implementation("javax.xml.bind", "jaxb-api", "2.3.1")
     implementation("com.google.code.gson", "gson", "2.8.6")
+    implementation("io.springfox", "springfox-swagger-ui", "2.9.2")
+    implementation("io.springfox", "springfox-swagger2", "2.9.2")
     implementation(project(":order-api"))
     implementation(project(":storehouse-api"))
     compileOnly("org.projectlombok:lombok:1.18.10")
