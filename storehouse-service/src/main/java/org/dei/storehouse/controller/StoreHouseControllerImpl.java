@@ -37,8 +37,10 @@ public class StoreHouseControllerImpl implements StorehouseAPI {
     @RequestMapping(path = "/items/{item_id}", method = RequestMethod.GET)
     public ProductDTO getItemById(@PathVariable(value = "item_id") Long itemID) {
         LOGGER.info("start product order by id");
-        LOGGER.debug("itemId: " + itemID);
-        return modelMapper.map(productService.get(itemID), ProductDTO.class);
+        LOGGER.info("itemId: " + itemID);
+        ProductDTO result = modelMapper.map(productService.get(itemID), ProductDTO.class);
+        LOGGER.info(result.toString());
+        return result;
     }
 
     @RequestMapping(path = "/items", method = RequestMethod.POST)

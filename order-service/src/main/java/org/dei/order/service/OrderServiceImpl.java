@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,10 +49,13 @@ public class OrderServiceImpl implements OrderService {
     public Order addItem(ItemAdditionParametersDTO iAPDTO, Long orderId) {
         if (orderId == -1) {
             LOGGER.info("OrderID is -1");
-            LOGGER.info("Product id: " + iAPDTO.getId().toString());
+            LOGGER.info("Product id: " + iAPDTO.getId());
             Order order = new Order();
             order.setStatus(Status.COLLECTING);
             order.setUsername(iAPDTO.getUsername());
+            order.setProducts(new ArrayList<>());
+            order.setTotalAmount(0L);
+            order.setTotalCost(0L);
             getProductById(iAPDTO, order);
             orderRepository.save(order);
             return order;
@@ -68,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
 
     private Order getProductById(ItemAdditionParametersDTO iAPDTO, Order order) {
         ProductDTO product = storeHouseClient.getItemById(iAPDTO.getId());
-        LOGGER.info("Product is:", product.toString());
+        LOGGER.info("Product is:" + product);
         if (product != null) {
             List<Product> products = order.getProducts();
             Product newProduct = new Product();
@@ -76,8 +80,10 @@ public class OrderServiceImpl implements OrderService {
             newProduct.setName(product.getName());
             newProduct.setAmount(iAPDTO.getAmount());
             newProduct.setPrice(product.getPrice());
+            LOGGER.info("Products: " + products);
+            LOGGER.info("newProduct:  " + newProduct);
             products.add(newProduct);
-            order.setTotalCost(order.getTotalCost() + product.getPrice() + product.getAmount());
+            order.setTotalCost(order.getTotalCost() + product.getPrice() * product.getAmount());
             order.setTotalAmount(order.getTotalAmount() + product.getAmount());
             storeHouseClient.reserveItems(iAPDTO.getId(), iAPDTO.getAmount());
         }

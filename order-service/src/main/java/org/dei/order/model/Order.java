@@ -4,6 +4,7 @@ import lombok.Data;
 import org.dei.order.api.model.Status;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -29,4 +30,5 @@ public class Order {
 
     @OneToMany
     private List<Product> products;
+
 }
