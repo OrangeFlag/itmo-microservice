@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
     public Order addItem(ItemAdditionParametersDTO iAPDTO, Long orderId) {
         if (orderId == -1) {
             LOGGER.info("OrderID is -1");
-            LOGGER.info("Product id: " + iAPDTO.getId());
+            LOGGER.info("Product id: " + iAPDTO.getItem_id());
             Order order = new Order();
             order.setStatus(Status.COLLECTING);
             order.setUsername(iAPDTO.getUsername());
@@ -70,8 +70,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Order getProductById(ItemAdditionParametersDTO iAPDTO, Order order) {
-        LOGGER.info("Trying to get item with id: " + iAPDTO.getId());
-        ProductDTO product = storeHouseClient.getItemById(iAPDTO.getId());
+        LOGGER.info("Trying to get item with id: " + iAPDTO.getItem_id());
+        ProductDTO product = storeHouseClient.getItemById(iAPDTO.getItem_id());
         LOGGER.info("Product is:" + product);
         if (product != null) {
             List<Product> products = order.getProducts();
@@ -85,8 +85,8 @@ public class OrderServiceImpl implements OrderService {
             products.add(newProduct);
             order.setTotalCost(order.getTotalCost() + product.getPrice() * product.getAmount());
             order.setTotalAmount(order.getTotalAmount() + product.getAmount());
-            LOGGER.info("Reserving " + iAPDTO.getAmount() + " of item with id: " + iAPDTO.getId());
-            storeHouseClient.reserveItems(iAPDTO.getId(), iAPDTO.getAmount());
+            LOGGER.info("Reserving " + iAPDTO.getAmount() + " of item with id: " + iAPDTO.getItem_id());
+            storeHouseClient.reserveItems(iAPDTO.getItem_id(), iAPDTO.getAmount());
         }
         return order;
     }

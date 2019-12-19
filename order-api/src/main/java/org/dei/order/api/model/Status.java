@@ -2,7 +2,7 @@ package org.dei.order.api.model;
 
 public enum Status {
     COLLECTING,
-    PAYED,
+    PAID,
     SHIPPING,
     COMPLETE,
     FAILED,
