@@ -36,10 +36,9 @@ public class StoreHouseControllerImpl implements StorehouseAPI {
 
     @RequestMapping(path = "/items/{item_id}", method = RequestMethod.GET)
     public ProductDTO getItemById(@PathVariable(value = "item_id") Long itemID) {
-        LOGGER.info("start product order by id");
-        LOGGER.info("itemId: " + itemID);
+        LOGGER.info("start finding product with id: " + itemID);
         ProductDTO result = modelMapper.map(productService.get(itemID), ProductDTO.class);
-        LOGGER.info(result.toString());
+        LOGGER.info("Find product: " + result.toString());
         return result;
     }
 
@@ -55,13 +54,13 @@ public class StoreHouseControllerImpl implements StorehouseAPI {
 
     @RequestMapping(path = "/items/{id}/addition/{amount}", method = RequestMethod.PUT)
     public ProductDTO addItems(@PathVariable Long id, @PathVariable Long amount) {
-        LOGGER.info("start adding amount to product");
+        LOGGER.info("start adding " + amount + "to product with id: " + id);
         return modelMapper.map(productService.add(id, amount), ProductDTO.class);
     }
 
     @RequestMapping(path = "/items/{id}/reserve/{amount}", method = RequestMethod.POST)
     public ProductDTO reserveItems(@PathVariable Long id, @PathVariable Long amount) {
-        LOGGER.info("start reserving amount of product");
+        LOGGER.info("start reserving " + amount + "of product with id: " + id);
         return modelMapper.map(productService.reserve(id, amount), ProductDTO.class);
     }
 

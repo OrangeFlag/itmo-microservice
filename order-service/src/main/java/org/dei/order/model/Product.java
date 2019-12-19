@@ -2,22 +2,16 @@ package org.dei.order.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Embeddable;
 
 @Data
-@Entity
-@Table(name = "product")
+@Embeddable
 public class Product {
-    @Id
     private Long id;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private Long amount;
 
-    @NotNull
     private Long price;
 }

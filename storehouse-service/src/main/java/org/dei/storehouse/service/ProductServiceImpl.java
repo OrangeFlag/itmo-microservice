@@ -41,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
     public Product add(Long id, Long amount) {
         Product product = get(id);
         product.setAmount(product.getAmount() + amount);
+        productRepository.save(product);
         return product;
     }
 
@@ -51,7 +52,8 @@ public class ProductServiceImpl implements ProductService {
             amount = product.getAmount();
         }
         product.setAmount(product.getAmount() - amount);
-        return null;
+        productRepository.save(product);
+        return product;
     }
 
     @Override

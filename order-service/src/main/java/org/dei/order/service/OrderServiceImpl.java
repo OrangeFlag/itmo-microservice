@@ -42,7 +42,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findAll() {
         return orderRepository.findAll();
-
     }
 
     @Override
@@ -62,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
         } else {
             return orderRepository.findById(orderId).map((Order order) -> {
                 if (Objects.equals(order.getUsername(), iAPDTO.getUsername())) {
-                    order = getProductById(iAPDTO, order);
+                    getProductById(iAPDTO, order);
                     orderRepository.save(order);
                 }
                 return order;
@@ -71,6 +70,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Order getProductById(ItemAdditionParametersDTO iAPDTO, Order order) {
+        LOGGER.info("Trying to get item with id: " + iAPDTO.getId());
         ProductDTO product = storeHouseClient.getItemById(iAPDTO.getId());
         LOGGER.info("Product is:" + product);
         if (product != null) {
@@ -85,6 +85,7 @@ public class OrderServiceImpl implements OrderService {
             products.add(newProduct);
             order.setTotalCost(order.getTotalCost() + product.getPrice() * product.getAmount());
             order.setTotalAmount(order.getTotalAmount() + product.getAmount());
+            LOGGER.info("Reserving " + iAPDTO.getAmount() + " of item with id: " + iAPDTO.getId());
             storeHouseClient.reserveItems(iAPDTO.getId(), iAPDTO.getAmount());
         }
         return order;
