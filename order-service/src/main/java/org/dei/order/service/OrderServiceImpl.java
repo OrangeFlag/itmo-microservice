@@ -92,15 +92,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order setStatus(Status status, Long orderId) {
+    public Order setStatus(Status newStatus, Long orderId) {
         return orderRepository.findById(orderId).map((Order order) -> {
-            if (status == Status.CANCELLED || status == Status.FAILED) {
-                for (Product i : order.getProducts()) {
-                    messageSender.sendMessage(i.getId(), i.getAmount());
+            Status orderStatus = order.getStatus();
+
+            if (orderStatus.possibleFollowUps().contains(newStatus)) {
+                order.setStatus(newStatus);
+
+                if (newStatus == Status.CANCELLED || newStatus == Status.FAILED) {
+                    for (Product i : order.getProducts()) {
+                        messageSender.sendMessage(i.getId(), i.getAmount());
+                    }
                 }
+
+                orderRepository.save(order);
             }
-            order.setStatus(status);
-            orderRepository.save(order);
             return order;
         }).get();
     }
