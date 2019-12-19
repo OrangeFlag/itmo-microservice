@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ItemAdditionParametersDTO {
-    private Long id;
+    private Long item_id;
     private Long amount;
     private String username;
 }
