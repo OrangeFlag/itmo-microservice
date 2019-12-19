@@ -23,7 +23,7 @@ public class PaymentControllerImpl implements PaymentAPI {
         this.paymentService = paymentService;
     }
 
-    @RequestMapping(path = "/{order_id}/payment", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{order_id}", method = RequestMethod.PUT)
     public OrderDTO perform(@PathVariable("order_id") Long orderId, @RequestBody UserDetailsDTO userDetailsDTO) {
         LOGGER.info("start performing payment");
         UserDetails userDetails = modelMapper.map(userDetailsDTO, UserDetails.class);
