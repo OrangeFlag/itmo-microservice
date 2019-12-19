@@ -1,5 +1,6 @@
 package org.dei.payment.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,8 +8,8 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "orders")
-class Order {
+@AllArgsConstructor
+public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 }

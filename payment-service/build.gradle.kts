@@ -31,6 +31,7 @@ dependencies {
     implementation("javax.xml.bind", "jaxb-api", "2.3.1")
     implementation("com.google.code.gson", "gson", "2.8.6")
     implementation(project(":payment-api"))
+    implementation(project(":order-api"))
 }
 
 configure<JavaPluginConvention> {

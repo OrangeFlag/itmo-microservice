@@ -1,6 +1,7 @@
 package org.dei.payment.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.dei.payment.api.model.CardAuthorizationInfo;
 
@@ -19,7 +20,6 @@ public class PaymentDetails {
 
     @NotNull
     @OneToOne
-    @Enumerated(EnumType.STRING)
     Order order;
 
     @NotNull

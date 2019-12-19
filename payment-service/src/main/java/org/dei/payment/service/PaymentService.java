@@ -1,8 +1,9 @@
 package org.dei.payment.service;
 
-import org.dei.payment.model.PaymentDetails;
+
+import org.dei.payment.api.dto.OrderDTO;
 import org.dei.payment.model.UserDetails;
 
 public interface PaymentService {
-    PaymentDetails perform(Long orderId, UserDetails userDetails);
+    OrderDTO perform(Long orderId, UserDetails userDetails);
 }

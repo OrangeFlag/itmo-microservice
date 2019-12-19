@@ -35,6 +35,12 @@ management:
 feign:
   hystrix:
     enabled: true
+  client:
+    config:
+      storehouse-service:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
 
 eureka:
   instance:

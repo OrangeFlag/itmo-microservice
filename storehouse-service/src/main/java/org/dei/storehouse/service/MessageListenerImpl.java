@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MessageListenerImpl implements MessageListener {
-    final ProductServiceImpl productService;
+    private final ProductServiceImpl productService;
 
     @Autowired
     public MessageListenerImpl(ProductServiceImpl productService) {
