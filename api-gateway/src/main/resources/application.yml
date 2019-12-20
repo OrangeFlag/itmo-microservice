@@ -33,9 +33,17 @@ management:
       exposure:
         include: hystrix.stream, info, health
 
+turbine:
+  appConfig: storehouse-service,order-service,payment-service,api-gateway
+  aggregator:
+    clusterConfig: default
+  clusterNameExpression: new String("default")
+  instanceUrlSuffix:
+    default: actuator/hystrix.stream
+
 eureka:
   client:
-    registerWithEureka: false
+#    registerWithEureka: false
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_URL}

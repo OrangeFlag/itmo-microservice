@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")
+    implementation("org.springframework.cloud", "spring-cloud-starter-netflix-hystrix", "2.1.3.RELEASE")
     implementation("org.springframework.cloud", "spring-cloud-starter-openfeign", "2.1.3.RELEASE")
     implementation("org.springframework.cloud", "spring-cloud-starter-netflix-eureka-client", "2.1.3.RELEASE")
     implementation("org.springframework.boot","spring-boot-starter-actuator", "2.1.3.RELEASE")
