@@ -54,9 +54,11 @@ feign:
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
+    leaseExpirationDurationInSeconds: 2
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URL}
     healthcheck:
       enabled: true
+    lease:
+      duration: 5

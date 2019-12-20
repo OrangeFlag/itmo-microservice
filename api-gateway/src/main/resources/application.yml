@@ -42,10 +42,14 @@ turbine:
     default: actuator/hystrix.stream
 
 eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
   client:
-#    registerWithEureka: false
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_URL}
-  server:
-    waitTimeInMsWhenSyncEmpty: 0
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
