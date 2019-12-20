@@ -1,6 +1,5 @@
 package org.dei.order.service;
 
-import lombok.var;
 import org.dei.messages.UnreservedMessage;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class MessageSenderImpl implements MessageSender {
 
     @Override
     public void sendMessage(Long id, Long count) {
-        final var message = new UnreservedMessage(id, count);
+        final UnreservedMessage message = new UnreservedMessage(id, count);
         rabbitTemplate.convertAndSend("unreservedQueue", message);
     }
 }
