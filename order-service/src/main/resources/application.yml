@@ -32,6 +32,15 @@ management:
     web:
       exposure:
         include: hystrix.stream, info, health
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 7000
+
 feign:
   hystrix:
     enabled: true
