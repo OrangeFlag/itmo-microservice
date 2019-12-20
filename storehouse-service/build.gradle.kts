@@ -1,46 +1,49 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     java
-    kotlin("jvm") version "1.3.41"
     id("org.springframework.boot") version "2.2.1.RELEASE"
+    id("io.spring.dependency-management") version "1.0.8.RELEASE"
 }
 
 group = "org.dei"
-version = "0.1"
+version = "0.0.1"
+java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")
-    implementation("org.springframework.cloud", "spring-cloud-starter-netflix-hystrix", "2.1.3.RELEASE")
-    implementation("org.springframework.cloud", "spring-cloud-starter-openfeign", "2.1.3.RELEASE")
-    implementation("org.springframework.cloud", "spring-cloud-starter-netflix-eureka-client", "2.1.3.RELEASE")
-    implementation("org.springframework.boot","spring-boot-starter-actuator", "2.1.3.RELEASE")
+    compile("org.springframework.boot", "spring-boot-starter")
+    implementation("org.springframework.cloud", "spring-cloud-starter-netflix-hystrix")
+    implementation("org.springframework.cloud", "spring-cloud-starter-openfeign")
+    implementation("org.springframework.cloud", "spring-cloud-starter-netflix-eureka-client")
+    implementation("org.springframework.boot", "spring-boot-starter-actuator")
+    implementation("org.springframework.boot", "spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot", "spring-boot-starter-web")
+    implementation("org.springframework.amqp", "spring-rabbit")
+    implementation("org.springframework.boot", "spring-boot-starter-amqp")
+
     implementation("javax.validation", "validation-api", "2.0.1.Final")
     implementation("org.apache.logging.log4j", "log4j-api", "2.12.1")
     implementation("org.apache.logging.log4j", "log4j-core", "2.12.1")
-    implementation("org.springframework.boot", "spring-boot-starter-data-jpa", "2.2.0.RELEASE")
-    implementation("org.springframework.boot", "spring-boot-starter-web", "2.2.0.RELEASE")
-    implementation(project(":storehouse-api"))
-    implementation("org.springframework.amqp", "spring-rabbit", "2.2.0.RELEASE")
-    implementation("org.springframework.boot", "spring-boot-starter-amqp", "2.2.0.RELEASE")
     runtime("org.postgresql", "postgresql", "9.4-1206-jdbc42")
-    compile("org.springframework.boot:spring-boot-starter")
     implementation("org.modelmapper", "modelmapper", "2.3.5")
-    implementation(project(":messages"))
-    compileOnly("org.projectlombok:lombok:1.18.10")
-    annotationProcessor("org.projectlombok:lombok:1.18.10")
+    compileOnly("org.projectlombok", "lombok", "1.18.10")
+    annotationProcessor("org.projectlombok", "lombok", "1.18.10")
     implementation("javax.xml.bind", "jaxb-api", "2.3.1")
     implementation("com.google.code.gson", "gson", "2.8.6")
+
+    implementation(project(":storehouse-api"))
+    implementation(project(":messages"))
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:Hoxton.RELEASE")
+    }
 }
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
