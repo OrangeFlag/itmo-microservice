@@ -32,6 +32,15 @@ management:
     web:
       exposure:
         include: hystrix.stream, info, health
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 7000
+
 feign:
   hystrix:
     enabled: true
@@ -45,9 +54,11 @@ feign:
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
+    leaseExpirationDurationInSeconds: 2
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URL}
     healthcheck:
       enabled: true
+    lease:
+      duration: 5

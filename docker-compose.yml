@@ -55,7 +55,7 @@ services:
     build: ./storehouse-service
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 2
     env_file:
       - env/storehouse.env
       - env/storehouse_secret.env
